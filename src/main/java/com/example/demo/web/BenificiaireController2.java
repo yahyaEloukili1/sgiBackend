@@ -26,9 +26,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.dao.AnnexeRepository;
 import com.example.demo.dao.BenificiaireRepository;
 import com.example.demo.dao.BenificiaireRepository2;
+import com.example.demo.dao.EndroitRepository;
 import com.example.demo.entities.Annexe;
 import com.example.demo.entities.Benificiaire;
 import com.example.demo.entities.BenificiaireArchive;
+import com.example.demo.entities.Endroit;
 import com.example.demo.services.ReportService;
 
 import net.sf.jasperreports.engine.JRException;
@@ -40,7 +42,7 @@ public class BenificiaireController2 {
 	@Autowired
 	BenificiaireRepository ficheRepository;
 	@Autowired
-	BenificiaireRepository2 bennifBenificiaireRepository2;
+	EndroitRepository endroitsrRepository;
 
 	@Autowired
 	AnnexeRepository annexeRepository;
@@ -52,25 +54,11 @@ public class BenificiaireController2 {
 //	}c
 	
 	
-	@GetMapping("/all2")
-	public List<BenificiaireArchive> getAllBenificiaires(){
-		return bennifBenificiaireRepository2.findAll();
+	@GetMapping("/endroits2")
+	public List<Endroit> getAllBenificiaires(){
+		return endroitsrRepository.findAll();
 	}
 	
-	
-	@GetMapping("/doublons2")
-	public List<BenificiaireArchive> getBenificiairesGroupedByCin() {
-	    List<BenificiaireArchive> benificiaires = bennifBenificiaireRepository2.findAll();
-	    Map<String, List<BenificiaireArchive>> groupedByCin = benificiaires.stream()
-		        .collect(Collectors.groupingBy(BenificiaireArchive::getCin));
-
-
-
-	    return groupedByCin.values().stream()
-	        .filter(list -> list.size() > 1)
-	        .flatMap(List::stream)
-	        .collect(Collectors.toList());
-	}
 
 
 

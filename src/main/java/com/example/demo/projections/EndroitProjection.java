@@ -25,7 +25,7 @@ String getIdentifiant();
 String getDesignation();
 String getAdress();
 District getDistrict();
-String getDistrictNamr();
+String getDistrictName();
 String getAnnexeName();
 String getCategorieName();
 int getSuperficie();
